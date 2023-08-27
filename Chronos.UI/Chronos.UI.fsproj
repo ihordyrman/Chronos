@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <UserSecretsId>dotnet-Chronos.Worker-239D03CC-B6A0-4A76-A829-A7F0648C009E</UserSecretsId>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <Compile Include="Worker.fs"/>
+        <Compile Include="Program.fs"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Chronos.Core\Chronos.Core.csproj"/>
+    </ItemGroup>
+</Project>
