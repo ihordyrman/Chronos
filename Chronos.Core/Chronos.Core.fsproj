@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Native\Point.fs"/>
+        <Compile Include="Native\Msg.fs"/>
+        <Compile Include="Native\WindowArgs.fs"/>
+        <Compile Include="Native\WindowEventHandler.fs"/>
+        <Compile Include="Native\WindowsEvents.fs"/>
+        <Compile Include="Native\Functions.fs"/>
+        <Compile Include="ActiveWindowEventHandler.fs"/>
+        <Compile Include="ApplicationActivity.fs"/>
+    </ItemGroup>
+
+</Project>

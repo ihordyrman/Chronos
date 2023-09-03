@@ -6,9 +6,8 @@ open System.Diagnostics
 open System.Text
 open System.Threading
 open System.Threading.Tasks
-open Chronos.Core
-open Chronos.Core.Models
 open Chronos.Core.Native
+open Chronos.CoreF
 open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
 
@@ -16,44 +15,47 @@ type Worker(logger: ILogger<Worker>) =
     inherit BackgroundService()
 
     let mutable applicationActivities = HashSet<ApplicationActivity>()
+    let mutable handler = new ActiveWindowEventHandler()
+
+    let eventHandler =
+        EventHandler<WindowArgs>(fun sender args ->
+            let builder = StringBuilder(256)
+            NativeFunctions.GetWindowText(args.WindowHandle, builder, 256) |> ignore
+
+            let activeProcess =
+                Process.GetProcesses() |> Array.tryFind (fun x -> x.MainWindowHandle = args.WindowHandle)
+
+            match activeProcess with
+            | Some value when value.MainModule.FileName <> null ->
+                let fileVersionInfo = FileVersionInfo.GetVersionInfo(value.MainModule.FileName)
+
+                let activity: ApplicationActivity =
+                    { ProcessName = value.ProcessName
+                      ApplicationName = fileVersionInfo.FileDescription
+                      Title = builder.ToString()
+                      Start = DateTime.Now
+                      End = None }
+
+                // DisplayApplications()
+                applicationActivities.Add(activity) |> ignore
+
+            | _ -> ())
 
     override this.ExecuteAsync(ctx: CancellationToken) =
         task {
-            // todo: can I use computation expression here?
-            use handler = new ActiveWindowEventHandler()
+            handler <- new ActiveWindowEventHandler()
             handler.MakeAHook()
+            handler.Hook.AddHandler(eventHandler)
 
-            handler.Hook.Add(fun e ->
-                let builder = StringBuilder(256)
-                NativeLibraries.GetWindowText(e.WindowHandle, builder, 256) |> ignore
-
-                let activeProcess =
-                    Process.GetProcesses() |> Array.tryFind (fun x -> x.MainWindowHandle = e.WindowHandle)
-
-                match activeProcess with
-                | Some value when value.MainModule.FileName <> null ->
-                    let fileVersionInfo = FileVersionInfo.GetVersionInfo(value.MainModule.FileName)
-
-                    let activity =
-                        ApplicationActivity(value.ProcessName, fileVersionInfo.FileDescription, builder.ToString())
-
-                    applicationActivities
-                    |> Seq.iter (fun aa -> aa.End <- if aa.End.HasValue then aa.End else Nullable(DateTime.Now))
-
-
-                    this.DisplayApplications()
-                    applicationActivities.Add(activity) |> ignore
-
-                | _ -> ())
-
-            let mutable msg = Msg()
-            let response = NativeLibraries.GetMessage(&msg, IntPtr.Zero, 0u, 0u)
-
-            if response = 0 || response = -1 then
-                return ()
-
-            NativeLibraries.TranslateMessage(&msg) |> ignore
-            NativeLibraries.DispatchMessage(&msg) |> ignore
+            // todo: message should be rewritten to F# class, since it's mutable
+            // let mutable msg = Msg()
+            // let response = NativeFunctions.GetMessage(&msg, IntPtr.Zero, 0u, 0u)
+            //
+            // if response = 0 || response = -1 then
+            //     return ()
+            //
+            // NativeFunctions.TranslateMessage(&msg) |> ignore
+            // NativeFunctions.DispatchMessage(&msg) |> ignore
 
             do! Task.Delay(1000)
         }

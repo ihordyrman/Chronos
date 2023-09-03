@@ -16,6 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Chronos.Core\Chronos.Core.csproj"/>
+        <ProjectReference Include="..\Chronos.Core\Chronos.Core.fsproj" />
     </ItemGroup>
 </Project>

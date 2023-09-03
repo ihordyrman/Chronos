@@ -1,5 +1,5 @@
 > It is not that we have a short time to live, but that we waste a lot of it.
-— Seneca
+> — Seneca
 
 A time-tracking program that measures the amount of time spent in various applications.
 
