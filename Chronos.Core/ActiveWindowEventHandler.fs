@@ -10,7 +10,7 @@ type ActiveWindowEventHandler() =
     let mutable hooked = false
     let hook = Event<EventHandler<WindowArgs>, WindowArgs>()
 
-    member thi.Hook = hook.Publish
+    member this.Hook = hook.Publish
 
     member this.TriggerEvent(args: WindowArgs) = hook.Trigger(this, args)
 
