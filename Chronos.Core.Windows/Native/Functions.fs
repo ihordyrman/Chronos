@@ -1,4 +1,4 @@
-﻿namespace Chronos.Core.Native
+﻿namespace Chronos.Core.Windows.Native
 
 open System.Runtime.InteropServices
 open System.Text

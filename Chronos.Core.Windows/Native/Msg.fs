@@ -1,4 +1,4 @@
-﻿namespace Chronos.Core.Native
+﻿namespace Chronos.Core.Windows.Native
 
 
 // https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-msg

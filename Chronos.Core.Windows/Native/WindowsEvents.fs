@@ -1,4 +1,4 @@
-﻿namespace Chronos.Core.Native
+﻿namespace Chronos.Core.Windows.Native
 
 // Docs: https://docs.microsoft.com/en-us/windows/win32/winauto/event-constants
 type WindowsEvents =

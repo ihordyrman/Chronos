@@ -1,4 +1,4 @@
-﻿namespace Chronos.Core.Native
+﻿namespace Chronos.Core.Windows.Native
 
 // https://docs.microsoft.com/en-us/previous-versions/dd162805(v=vs.85)
 [<Struct>]

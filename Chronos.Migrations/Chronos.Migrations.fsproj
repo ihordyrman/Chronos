@@ -5,15 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Initial.fs"/>
+        <Compile Include="Initial.fs" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentMigrator" Version="3.2.4"/>
+        <PackageReference Include="FluentMigrator" Version="3.2.4" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Update="FSharp.Core" Version="5.0.2"/>
+        <PackageReference Update="FSharp.Core" Version="5.0.2" />
     </ItemGroup>
 
 

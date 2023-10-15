@@ -1,4 +1,4 @@
-﻿namespace Chronos.Core.Native
+﻿namespace Chronos.Core.Windows.Native
 
 // http://www.pinvoke.net/default.aspx/user32/WinEventDelegate.html
 type WinEventDelegate =

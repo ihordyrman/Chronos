@@ -1,4 +1,4 @@
-﻿namespace Chronos.CoreF
+﻿namespace Chronos.Core.Windows
 
 open System
 

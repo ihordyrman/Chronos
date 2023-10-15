@@ -6,11 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="AppMonitoring.fs"/>
+        <Compile Include="AppMonitoring.fs" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Chronos.Data\Chronos.Data.fsproj"/>
+        <ProjectReference Include="..\Chronos.Data\Chronos.Data.fsproj" />
     </ItemGroup>
 
 </Project>

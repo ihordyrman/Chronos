@@ -6,13 +6,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="IConnectionManager.fs"/>
-        <Compile Include="SQLiteConnectionManager.fs"/>
-        <Compile Include="Types.fs"/>
-        <Compile Include="Repositories\IRepository.fs"/>
-        <Compile Include="Repositories\ActivityRepository.fs"/>
-        <Compile Include="Repositories\AppRepository.fs"/>
-        <Compile Include="Repositories\ProcessRepository.fs"/>
+        <Compile Include="IConnectionManager.fs" />
+        <Compile Include="SQLiteConnectionManager.fs" />
+        <Compile Include="Types.fs" />
+        <Compile Include="Repositories\IRepository.fs" />
+        <Compile Include="Repositories\ActivityRepository.fs" />
+        <Compile Include="Repositories\AppRepository.fs" />
+        <Compile Include="Repositories\ProcessRepository.fs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dapper.FSharp" Version="4.6.1"/>
+        <PackageReference Include="Dapper.FSharp" Version="4.6.1" />
     </ItemGroup>
 
 </Project>

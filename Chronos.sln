@@ -18,7 +18,7 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chronos.Data", "Chronos.Dat
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chronos.Application", "Chronos.Application\Chronos.Application.fsproj", "{5B34AC4D-C583-488B-900B-1E6A97F0E7B6}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chronos.Core", "Chronos.Core\Chronos.Core.fsproj", "{903ECE3B-9AC6-4EF9-AD72-8576FEE9B2FA}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chronos.Core.Windows", "Chronos.Core.Windows\Chronos.Core.Windows.fsproj", "{903ECE3B-9AC6-4EF9-AD72-8576FEE9B2FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
