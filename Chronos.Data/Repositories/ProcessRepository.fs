@@ -1,7 +1,7 @@
-﻿namespace Chronos.Data1.Repositories
+﻿namespace Chronos.Data.Repositories
 
 open Chronos.Data.Repositories
-open Chronos.Data1
+open Chronos.Data
 
 type ProcessRepository =
     inherit IRepository<Process>
