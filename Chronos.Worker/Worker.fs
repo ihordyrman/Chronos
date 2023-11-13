@@ -5,6 +5,7 @@ open System.Diagnostics
 open System.Text
 open System.Threading
 open System.Threading.Tasks
+open Chronos.Core
 open Chronos.Core.Windows.Native
 open Chronos.Core.Windows
 open Microsoft.Extensions.Hosting
@@ -92,5 +93,9 @@ type Worker(logger: ILogger<Worker>) =
                     key, totalTime)
                 |> Seq.toList
 
-            for appName, totalTime in apps do
-                logger.LogInformation("{0} - {1:F2} seconds", appName, totalTime)
+            let appsString =
+                apps
+                |> List.map (fun (appName, totalTime) -> $"%s{appName} - %F{totalTime} seconds")
+                |> String.concat ", "
+
+            logger.LogInformation(appsString)

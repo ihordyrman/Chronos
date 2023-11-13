@@ -6,14 +6,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Native\Point.fs" />
-        <Compile Include="Native\Msg.fs" />
-        <Compile Include="Native\WindowArgs.fs" />
-        <Compile Include="Native\WindowEventHandler.fs" />
-        <Compile Include="Native\WindowsEvents.fs" />
-        <Compile Include="Native\Functions.fs" />
-        <Compile Include="ActiveWindowEventHandler.fs" />
         <Compile Include="ApplicationActivity.fs" />
+        <Compile Include="IActivityMonitoring.fs" />
+        <Compile Include="Windows\Native\Point.fs" />
+        <Compile Include="Windows\Native\Msg.fs" />
+        <Compile Include="Windows\Native\Functions.fs" />
+        <Compile Include="Windows\Native\WindowArgs.fs" />
+        <Compile Include="Windows\Native\WindowsEvents.fs" />
+        <Compile Include="Windows\Native\WindowEventHandler.fs" />
+        <Compile Include="Windows\ActiveWindowEventHandler.fs" />
+        <Compile Include="Windows\WindowsActivityMonitor.fs" />
     </ItemGroup>
 
 </Project>

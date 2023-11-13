@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chronos.Migrations", "Chronos.Migrations\Chronos.Migrations.fsproj", "{CB5C8371-C795-4414-9F90-55481CC834B6}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chronos.UI", "Chronos.UI\Chronos.UI.fsproj", "{010EF28F-BCEB-4182-A6BB-7D9C1F0DC8EA}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chronos.Worker", "Chronos.Worker\Chronos.Worker.fsproj", "{010EF28F-BCEB-4182-A6BB-7D9C1F0DC8EA}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Chronos.Data", "Chronos.Data\Chronos.Data.fsproj", "{A826C43D-476E-42E4-91B6-A0C4C06EAA69}"
 EndProject

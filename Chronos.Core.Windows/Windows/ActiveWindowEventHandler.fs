@@ -1,4 +1,4 @@
-﻿namespace Chronos.Core.Windows.Native
+﻿namespace Chronos.Core.Windows
 
 open System
 open Chronos.Core.Windows.Native
@@ -20,10 +20,6 @@ type ActiveWindowEventHandler() =
                 NativeFunctions.UnhookWinEvent(innerHandle) |> ignore
                 procDelegate <- None
                 innerHandle <- nativeint 0
-
-    member this.Hooked
-        with get () = hooked
-        and set value = hooked <- value
 
     member this.MakeAHook() =
         let onEvent hWinEventHook eventType hWnd idObject idChild dwEventThread dwmsEventTime =

@@ -9,7 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentMigrator" Version="3.2.4" />
+        <PackageReference Include="FluentMigrator" Version="3.3.2" />
     </ItemGroup>
 
     <ItemGroup>
