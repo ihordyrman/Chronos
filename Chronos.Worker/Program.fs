@@ -14,5 +14,4 @@ module Program =
     [<EntryPoint>]
     let main args =
         createHostBuilder(args).Build().Run()
-
         0 // exit code

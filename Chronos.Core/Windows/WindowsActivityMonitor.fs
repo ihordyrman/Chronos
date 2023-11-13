@@ -3,13 +3,14 @@
 open System
 open System.Diagnostics
 open System.Text
+open System.Threading
 open Chronos.Core
 open Chronos.Core.Windows.Native
 
 type WindowsActivityMonitor() =
 
-    let mutable applicationActivities: list<ApplicationActivity> = List.empty
     let handler = new ActiveWindowEventHandler()
+    let activityEvent = Event<ApplicationActivity>()
 
     let eventHandler =
         EventHandler<WindowArgs>(fun sender args ->
@@ -30,27 +31,19 @@ type WindowsActivityMonitor() =
                       Start = DateTime.Now
                       End = None }
 
-                if applicationActivities.Length >= 1 then
-                    let lastAppActivity =
-                        { (applicationActivities |> List.rev |> List.head) with
-                            End = Some DateTime.Now }
-
-                    let listWithoutLast = applicationActivities |> List.rev |> List.tail
-                    applicationActivities <- listWithoutLast @ [ lastAppActivity; activity ]
-                else
-                    applicationActivities <- applicationActivities @ [ activity ]
-
+                activityEvent.Trigger(activity)
             | _ -> ())
 
     interface IActivityMonitoring with
 
-        member this.StartMonitoring() =
+        member this.StartMonitoring(ctx: CancellationToken) =
             let mutable shouldStop = false
             handler.MakeAHook()
             handler.Hook.AddHandler(eventHandler)
 
-            while not shouldStop do
+            while not shouldStop || ctx.IsCancellationRequested do
                 let mutable msg: Msg = Unchecked.defaultof<Msg>
+
                 let response = NativeFunctions.GetMessage(&msg, IntPtr.Zero, 0u, 0u)
 
                 if response = 0 || response = -1 then
@@ -59,6 +52,6 @@ type WindowsActivityMonitor() =
                 NativeFunctions.TranslateMessage(&msg) |> ignore
                 NativeFunctions.DispatchMessage(&msg) |> ignore
 
-        member this.StopMonitoring() = handler.Hook.RemoveHandler(eventHandler)
+            handler.Hook.RemoveHandler(eventHandler)
 
-        member this.Activity = failwith "todo"
+        member this.Activity = activityEvent.Publish

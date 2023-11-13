@@ -1,6 +1,7 @@
 ﻿namespace Chronos.Core
 
+open System.Threading
+
 type IActivityMonitoring =
-    abstract member StartMonitoring: unit -> unit
-    abstract member StopMonitoring: unit -> unit
+    abstract member StartMonitoring: CancellationToken -> unit
     abstract member Activity: IEvent<ApplicationActivity>
