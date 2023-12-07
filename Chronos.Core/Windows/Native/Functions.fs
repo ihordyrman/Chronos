@@ -44,3 +44,8 @@ module NativeFunctions =
     // https://www.pinvoke.net/default.aspx/user32.GetForegroundWindow
     [<DllImport("user32.dll")>]
     extern nativeint GetForegroundWindow()
+
+    // https://www.pinvoke.net/default.aspx/user32.enumwindows
+    [<DllImport("user32.dll")>]
+    [<return: MarshalAs(UnmanagedType.Bool)>]
+    extern bool EnumWindows(EnumWindowsProc lpEnumFunc, uint32 lParam)

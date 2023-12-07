@@ -12,6 +12,12 @@ type WindowsActivityMonitor() =
     let handler = new ActiveWindowEventHandler()
     let activityEvent = Event<ApplicationActivity>()
 
+    let getActiveWindowProcessId () : uint32 =
+        let foregroundWindowHandle = NativeFunctions.GetForegroundWindow()
+        let mutable processId = 0u
+        let _ = NativeFunctions.GetWindowThreadProcessId(foregroundWindowHandle, &processId)
+        processId
+
     let eventHandler =
         EventHandler<WindowArgs>(fun sender args ->
             let builder = StringBuilder(256)
@@ -21,7 +27,7 @@ type WindowsActivityMonitor() =
                 Process.GetProcesses() |> Array.tryFind (fun x -> x.MainWindowHandle = args.WindowHandle)
 
             match activeProcess with
-            | Some value when value.MainModule.FileName <> null ->
+            | Some value ->
                 let fileVersionInfo = FileVersionInfo.GetVersionInfo(value.MainModule.FileName)
 
                 let activity: ApplicationActivity =
@@ -32,7 +38,35 @@ type WindowsActivityMonitor() =
                       End = None }
 
                 activityEvent.Trigger(activity)
-            | _ -> ())
+            | None ->
+                let mutable foundProcess: Process option = None
+
+                let enumWindowsCallback (hWnd: nativeint) (lParam: nativeint) : bool =
+                    let mutable windowProcessId = 0u
+                    NativeFunctions.GetWindowThreadProcessId(hWnd, &windowProcessId) |> ignore
+
+                    if windowProcessId = (lParam |> uint32) then
+                        foundProcess <- Process.GetProcesses() |> Array.tryFind (fun x -> x.Id = int windowProcessId)
+                        false
+                    else
+                        true
+
+                let activeWindowProcessId = getActiveWindowProcessId ()
+                NativeFunctions.EnumWindows(enumWindowsCallback, activeWindowProcessId) |> ignore
+
+                match foundProcess with
+                | Some foundProcess when foundProcess.MainModule.FileName <> null ->
+                    let fileVersionInfo = FileVersionInfo.GetVersionInfo(foundProcess.MainModule.FileName)
+
+                    let activity: ApplicationActivity =
+                        { ProcessName = foundProcess.ProcessName
+                          ApplicationName = fileVersionInfo.FileDescription
+                          Title = builder.ToString()
+                          Start = DateTime.Now
+                          End = None }
+
+                    activityEvent.Trigger(activity)
+                | _ -> ())
 
     interface IActivityMonitoring with
 

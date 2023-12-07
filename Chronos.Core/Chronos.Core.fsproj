@@ -9,12 +9,8 @@
     <ItemGroup>
         <Compile Include="ApplicationActivity.fs" />
         <Compile Include="IActivityMonitoring.fs" />
-        <Compile Include="Windows\Native\Point.fs" />
-        <Compile Include="Windows\Native\Msg.fs" />
+        <Compile Include="Windows\Native\Types.fs" />
         <Compile Include="Windows\Native\Functions.fs" />
-        <Compile Include="Windows\Native\WindowArgs.fs" />
-        <Compile Include="Windows\Native\WindowsEvents.fs" />
-        <Compile Include="Windows\Native\WindowEventHandler.fs" />
         <Compile Include="Windows\ActiveWindowEventHandler.fs" />
         <Compile Include="Windows\WindowsActivityMonitor.fs" />
     </ItemGroup>
