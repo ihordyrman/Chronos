@@ -14,13 +14,13 @@ let saveApplicationAsync (appRepository: IRepository<App>) (app: App) =
         | Some _ -> do appRepository.UpdateAsync(app) |> Async.AwaitTask |> ignore
     }
 
-let saveProcessAsync (processRepository: IRepository<Process>) (process: Process) =
+let saveProcessAsync (processRepository: IRepository<Process>) (ps: Process) =
     async {
-        let! existingProcess = processRepository.GetAsync(process.Id) |> Async.AwaitTask
+        let! existingProcess = processRepository.GetAsync(ps.Id) |> Async.AwaitTask
 
         match existingProcess with
-        | None -> do processRepository.InsertAsync(process) |> Async.AwaitTask |> ignore
-        | Some _ -> do processRepository.UpdateAsync(process) |> Async.AwaitTask |> ignore
+        | None -> do processRepository.InsertAsync(ps) |> Async.AwaitTask |> ignore
+        | Some _ -> do processRepository.UpdateAsync(ps) |> Async.AwaitTask |> ignore
     }
 
 let saveActivityAsync (activityRepository: IRepository<Activity>) (activity: Activity) =

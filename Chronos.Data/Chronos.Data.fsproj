@@ -7,7 +7,7 @@
 
     <ItemGroup>
         <Compile Include="IConnectionManager.fs" />
-        <Compile Include="SQLiteConnectionManager.fs" />
+        <Compile Include="SqLiteConnectionManager.fs" />
         <Compile Include="Types.fs" />
         <Compile Include="Repositories\IRepository.fs" />
         <Compile Include="Repositories\ActivityRepository.fs" />
@@ -23,6 +23,7 @@
 
     <ItemGroup>
         <PackageReference Include="Dapper.FSharp" Version="4.7.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     </ItemGroup>
 
 </Project>
