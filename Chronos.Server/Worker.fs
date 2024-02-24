@@ -1,13 +1,13 @@
-namespace Chronos.Worker
+namespace Chronos.Server.Worker
 
 open System
 open System.Collections.Generic
 open System.Threading
 open System.Threading.Tasks
-open Chronos.Core
-open Chronos.Core.Windows
-open Chronos.Data
-open Chronos.Data.Repositories
+open Chronos.Server.Core
+open Chronos.Server.Core.Windows
+open Chronos.Server.Data
+open Chronos.Server.Data.Repositories
 open Microsoft.Extensions.Hosting
 open Microsoft.Extensions.Logging
 
@@ -34,7 +34,6 @@ type Worker(logger: ILogger<Worker>, activityRepository: IRepository<Activity>) 
                     let! _ = activityRepository.InsertAsync(activity)
                     ()
 
-                logger.LogInformation "Worker is working"
                 do! Task.Delay 1000
                 return! synchronize ctx
         }

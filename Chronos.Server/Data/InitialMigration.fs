@@ -1,9 +1,9 @@
-﻿namespace Migrations
+﻿namespace Chronos.Server.Data
 
 open FluentMigrator
 
 [<Migration(20230927L, "Initial migration with base tables")>]
-type Initial() =
+type InitialMigration() =
     inherit Migration()
 
     override this.Up() =

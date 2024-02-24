@@ -1,4 +1,4 @@
-﻿namespace Chronos.Data
+﻿namespace Chronos.Server.Data
 
 open System
 

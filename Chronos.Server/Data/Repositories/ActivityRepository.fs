@@ -1,8 +1,8 @@
-﻿namespace Chronos.Data.Repositories
+﻿namespace Chronos.Server.Data.Repositories
 
 open System
-open Chronos.Data.Repositories
-open Chronos.Data
+open Chronos.Server.Data.Repositories
+open Chronos.Server.Data
 open Microsoft.Extensions.Logging
 
 type ActivityRepository(manager: IConnectionManager, logger: ILogger<ActivityRepository>) =
@@ -10,7 +10,7 @@ type ActivityRepository(manager: IConnectionManager, logger: ILogger<ActivityRep
     interface IRepository<Activity> with
         member this.InsertAsync(activity: Activity) =
             task {
-                logger.LogInformation("Inserting activity {activity}", activity.Id)
+                logger.LogInformation("Inserting activity {activity}", activity.AppId)
                 return true
             }
 

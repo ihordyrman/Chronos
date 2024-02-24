@@ -1,4 +1,4 @@
-﻿namespace Chronos.Data.Repositories
+﻿namespace Chronos.Server.Data.Repositories
 
 open System
 open System.Threading.Tasks

@@ -1,4 +1,4 @@
-﻿namespace Chronos.Core
+﻿namespace Chronos.Server.Core
 
 open System
 

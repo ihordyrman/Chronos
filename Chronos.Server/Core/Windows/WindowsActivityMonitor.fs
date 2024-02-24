@@ -1,11 +1,11 @@
-﻿namespace Chronos.Core.Windows
+﻿namespace Chronos.Server.Core.Windows
 
 open System
 open System.Diagnostics
 open System.Text
 open System.Threading
-open Chronos.Core
-open Chronos.Core.Windows.Native
+open Chronos.Server.Core
+open Chronos.Server.Core.Windows.Native
 
 type WindowsActivityMonitor() =
 

@@ -1,4 +1,4 @@
-﻿namespace Chronos.Core.Windows.Native
+﻿namespace Chronos.Server.Core.Windows.Native
 
 open System
 

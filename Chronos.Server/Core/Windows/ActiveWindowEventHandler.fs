@@ -1,7 +1,7 @@
-﻿namespace Chronos.Core.Windows
+﻿namespace Chronos.Server.Core.Windows
 
 open System
-open Chronos.Core.Windows.Native
+open Chronos.Server.Core.Windows.Native
 open FSharp.Control
 
 type ActiveWindowEventHandler() =

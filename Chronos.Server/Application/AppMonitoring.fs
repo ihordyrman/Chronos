@@ -2,8 +2,8 @@
 
 open System
 open System.Threading.Tasks
-open Chronos.Data.Repositories
-open Chronos.Data
+open Chronos.Server.Data.Repositories
+open Chronos.Server.Data
 
 let saveApplicationAsync (appRepository: IRepository<App>) (app: App) =
     async {

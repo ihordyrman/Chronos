@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <UserSecretsId>dotnet-Chronos.Worker-239D03CC-B6A0-4A76-A829-A7F0648C009E</UserSecretsId>
+        <RootNamespace>Chronos.Worker</RootNamespace>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <Compile Include="Data\IConnectionManager.fs" />
+        <Compile Include="Data\SqLiteConnectionManager.fs" />
+        <Compile Include="Data\Types.fs" />
+        <Compile Include="Data\Repositories\IRepository.fs" />
+        <Compile Include="Data\Repositories\ActivityRepository.fs" />
+        <Compile Include="Data\Repositories\AppRepository.fs" />
+        <Compile Include="Data\Repositories\ProcessRepository.fs" />
+        <Compile Include="Data\InitialMigration.fs" />
+        <Compile Include="Core\ApplicationActivity.fs" />
+        <Compile Include="Core\IActivityMonitoring.fs" />
+        <Compile Include="Core\Windows\Native\Types.fs" />
+        <Compile Include="Core\Windows\Native\Functions.fs" />
+        <Compile Include="Core\Windows\ActiveWindowEventHandler.fs" />
+        <Compile Include="Core\Windows\WindowsActivityMonitor.fs" />
+        <Compile Include="Application\AppMonitoring.fs" />
+        <Compile Include="Worker.fs" />
+        <Compile Include="Program.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper.FSharp" Version="4.7.0" />
+        <PackageReference Include="FluentMigrator.Runner" Version="5.1.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.2" />
+    </ItemGroup>
+</Project>

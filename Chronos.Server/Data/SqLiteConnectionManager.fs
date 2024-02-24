@@ -1,8 +1,8 @@
-﻿namespace Chronos.Data.Database
+﻿namespace Chronos.Server.Data.Database
 
 open System
 open System.Data
-open Chronos.Data
+open Chronos.Server.Data
 
 type SqLiteConnectionManager(connection: IDbConnection) =
     let mutable innerConnection = connection
@@ -16,6 +16,8 @@ type SqLiteConnectionManager(connection: IDbConnection) =
         | ConnectionState.Open
         | ConnectionState.Connecting -> ()
         | _ -> innerConnection.Open()
+
+
 
     member this.BeginTransaction() = this.Connection.BeginTransaction()
 
